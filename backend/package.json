@@ -31,6 +31,8 @@
     "@web3auth/base": "^4.3.0",
     "@web3auth/modal": "^4.3.1",
     "@web3auth/openlogin-adapter": "^4.3.0",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.0",
     "mysql2": "^3.6.3",
     "passport": "^0.6.0",
     "passport-local": "^1.0.0",
