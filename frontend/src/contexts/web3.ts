@@ -1,7 +1,9 @@
 import { readable, writable } from "svelte/store"
 import { cachedStore, consistentStore } from "../helpers/reactivity-helpers"
-import { type Address, createWalletClient, custom } from "viem"
+import { type Address, createWalletClient, custom, verifyTypedData, type Hex } from "viem"
 import { gnosis } from "viem/chains";
+import * as SignIn from "../signatures/signin";
+import * as Survey from "../signatures/survey";
 
 export function createWeb3Ctx() {
 	const client = createWalletClient({
@@ -21,8 +23,38 @@ export function createWeb3Ctx() {
 			}
 			
 			if (address) {
-				console.log(address)
-				ctx.account.set(address)
+				let sig: Hex | null = localStorage.getItem("signinsig") as Hex
+
+				if (!sig) {
+					const validSignInSig = await verifyTypedData({
+						address,
+						domain: SignIn.domain,
+						types: SignIn.types,
+						primaryType: SignIn.primaryType,
+						message: {
+							wallet: address
+						},
+						signature: sig
+					})
+	
+					if (!validSignInSig) {
+						sig = await client.signTypedData({
+							account: address,
+							domain: SignIn.domain,
+							types: SignIn.types,
+							primaryType: SignIn.primaryType,
+							message: {
+								wallet: address
+							}
+						});
+						localStorage.setItem("signinsig", sig)
+					}
+				}
+				
+				if (sig) {
+					console.log(address)
+					ctx.account.set(address)
+				}
 			}
 		},
 
@@ -38,26 +70,9 @@ export function createWeb3Ctx() {
 		async answerSurvey() {
 			await client.signTypedData({
 				account: ctx.account.current!,
-				domain: {
-					name: "Community Surveys",
-					version: "1",
-					chainId: gnosis.id,
-				},
-				types: {
-					Respondent: [
-						{ name: "name", type: "string" },
-						{ name: "wallet", type: "address" },
-					],
-					Question: [
-						{ name: "question", type: "string" },
-						{ name: "answer", type: "string" },
-					],
-					Survey: [
-						{ name: "respondent", type: "Respondent" },
-						{ name: "questions", type: "Question[]" },
-					],
-				},
-				primaryType: "Survey",
+				domain: Survey.domain,
+				types: Survey.types,
+				primaryType: Survey.primaryType,
 				message: {
 					respondent: {
 						name: "You",
