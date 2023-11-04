@@ -1,7 +1,10 @@
 import { Injectable } from '@nestjs/common';
+import {Survey} from './dtos/app.survey';
 
 @Injectable()
 export class AppService {
+  
+
   getHello(): string {
     return 'Hello World!';
   }
@@ -12,9 +15,15 @@ export class AppService {
     return userAddress;
   }
 
-  surveyResults(): string {
-
-    return const result: string;
+  postNewSurvey(): Survey {
+    const survey1: Survey = {name: '0x0'};
+    return survey1;
   }
+
+  getSurveyResults(): string {
+    const result = '0x0'
+    return result;
+  }
+
 
 }
