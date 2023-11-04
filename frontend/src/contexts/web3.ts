@@ -71,7 +71,6 @@ export function createWeb3Ctx() {
 				primaryType: Survey.primaryType,
 				message: {
 					respondent: {
-						name: "You",
 						wallet: ctx.account.current!,
 					},
 					questions: [

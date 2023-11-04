@@ -8,16 +8,13 @@
 
 {#if $acc}
 	<button
-		class="border border-black rounded-lg hover:bg-gray-200 active:bg-gray-300 py-1 px-4"
+		class="border !border-[#3E6957] !bg-white hover:!bg-gray-200 active:!bg-gray-300 text-[currentColor]"
 		on:click={web3.disconnect}
 	>
 		{$acc.substring(0, 5) + ".." + $acc.substring(39)}
 	</button>
 {:else}
-	<button
-		class="text-white border border-transparent rounded-lg bg-sky-500 hover:bg-sky-600 active:bg-sky-700 py-1 px-4"
-		on:click={web3.connect}
-	>
+	<button class="border border-transparent" on:click={web3.connect}>
 		Sign In
 	</button>
 {/if}

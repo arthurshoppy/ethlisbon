@@ -8,7 +8,6 @@ export const domain = {
 
 export const types = {
 	Respondent: [
-		{ name: "name", type: "string" },
 		{ name: "wallet", type: "address" },
 	],
 	Question: [

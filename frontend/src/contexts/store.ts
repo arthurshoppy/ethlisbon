@@ -19,7 +19,7 @@ export function createStoreCtx() {
 				}
 				set(null)
 
-				
+				set([{ id: "1", title: "Lol", desc: ""}])
 			})
 		})
 	}
