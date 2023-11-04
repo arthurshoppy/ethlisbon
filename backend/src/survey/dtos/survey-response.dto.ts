@@ -17,5 +17,5 @@ export class SurveyResponseDto {
   @ValidateNested({ each: true })
   @Type(() => AnswerDto)
   @IsObject({ each: true })
-  answers: AnswerDto[];
+  responses: AnswerDto[];
 }

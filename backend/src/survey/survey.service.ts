@@ -1,22 +1,30 @@
 import { Injectable } from '@nestjs/common';
-import {Survey} from '../dtos/app.survey';
+import { CreateSurveyDto } from './dtos/create-survey.dto';
+import { SurveyResponseDto } from './dtos/survey-response.dto';
 
 @Injectable()
 export class SurveyService {
-    postNewSurvey(): Survey {
-        const survey1: Survey = {name: '0x0'};
-        return survey1;
-      }
-    createSurvey(): number {
-        return 1;
+    
+    createSurvey(title:string, question: string ): CreateSurveyDto {
+        
+        return ;
     }
 
-    getSurvey(): number {
-        const id = 1;
-        return id;
+    getSurvey(id: number): String {
+        const user = id;
+        return ;
     }
-      getSurveyResults(): string {
+
+    saveResponse(id: number, responses): any {
+        const user = id;
+        const saveResponses = responses;
+        return ; //save it to DB  
+    }
+    
+    getSurveyResults(): SurveyResponseDto {
         const result = '0x0'
-        return result;
+        // returns the survey result from DB 
+        // Returns the global DB survey result from DB
+        return ;
       }
 }
