@@ -74,5 +74,8 @@ export function createWeb3Ctx() {
 		}
 	}
 
+	// reconnect automatically
+	client.getAddresses().then(r => r[0] && ctx.connect())
+
 	return ctx
 }
