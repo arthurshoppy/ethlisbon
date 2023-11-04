@@ -3,12 +3,18 @@ import { readable, writable } from "svelte/store";
 import { cachedStore } from "../helpers/reactivity-helpers";
 
 import Surveys from "../routes/Surveys.svelte";
+import CreateSurvey from "../routes/CreateSurvey.svelte";
+import SurveyAnalytics from "../routes/SurveyAnalytics.svelte";
+import AnswerSurvey from "../routes/AnswerSurvey.svelte";
 
 export function createRoutingCtx() {
 	const index = 'surveys'
 
 	const routes: { [key: string]: ComponentType } = {
-		surveys: Surveys
+		surveys: Surveys,
+		create: CreateSurvey,
+		view: SurveyAnalytics,
+		answer: AnswerSurvey
 	}
 
 	let navigations = 0

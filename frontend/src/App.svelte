@@ -21,6 +21,7 @@
 		{#if $root !== $route}
 			<button
 				class="hover:bg-gray-200 active:bg-gray-300 rounded grid py-2 mr-1"
+				on:click={routing.goback}
 			>
 				<img class="w-4 h-4 ml-2" src={chevronLeft} alt="go back" />
 			</button>
