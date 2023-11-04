@@ -6,8 +6,11 @@
 
 	import chevronLeft from "./assets/chevron-left.svg";
 	import { createWeb3Ctx } from "./contexts/web3";
+	import { createStoreCtx } from "./contexts/store";
 
 	setContext("web3", createWeb3Ctx());
+
+	setContext("store", createStoreCtx());
 
 	const routing = createRoutingCtx();
 	setContext("routing", routing);
