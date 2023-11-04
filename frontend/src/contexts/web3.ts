@@ -1,7 +1,8 @@
-import { readable, writable } from "svelte/store"
-import { cachedStore, consistentStore } from "../helpers/reactivity-helpers"
+import { writable } from "svelte/store"
+import { cachedStore } from "../helpers/reactivity-helpers"
 import { type Address, createWalletClient, custom, verifyTypedData, type Hex } from "viem"
 import { gnosis } from "viem/chains";
+
 import * as SignIn from "../signatures/signin";
 import * as Survey from "../signatures/survey";
 
@@ -27,14 +28,14 @@ export function createWeb3Ctx() {
 
 				if (!sig) {
 					const validSignInSig = await verifyTypedData({
+						signature: sig,
 						address,
 						domain: SignIn.domain,
 						types: SignIn.types,
 						primaryType: SignIn.primaryType,
 						message: {
 							wallet: address
-						},
-						signature: sig
+						}
 					})
 	
 					if (!validSignInSig) {
@@ -61,11 +62,6 @@ export function createWeb3Ctx() {
 		disconnect() {
 			ctx.account.set(null)
 		},
-
-		surveys: consistentStore(readable<{}[] | null>(null, (set) => {
-			// TODO
-
-		})),
 
 		async answerSurvey() {
 			await client.signTypedData({
