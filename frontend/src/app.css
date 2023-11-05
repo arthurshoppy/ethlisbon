@@ -6,7 +6,7 @@
 	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 
 	color-scheme: light;
-	color: black;
+	color: #3E6957;
 	background-color: white;
 
 	font-synthesis: none;
@@ -14,4 +14,14 @@
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-text-size-adjust: 100%;
+}
+
+button {
+	@apply text-white;
+	@apply bg-[#DD7143];
+	@apply hover:bg-[#c57451];
+	@apply active:bg-[#9e5e42];
+	@apply rounded-lg;
+	@apply py-1;
+	@apply px-4;
 }
